@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../static/laydate/laydate.js"></script> <!-- 改成你的路径 -->
+
+    </script>
+    <style>
+    body{padding: 20px;}
+    .demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
+
+    </style>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <style type="text/css">
+        a{color:red}
+
+    </style>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+  <form class="layui-form"> 
+
+    <div class="layui-form-item" style="width: 500px;">
+      <label class="layui-form-label" for="xuexiao">学校</label>
+        <div class="layui-input-block">
+          <select name="xuexiao" lay-filter="school" id="xuexiao">
+            <option value=""></option>
+            <option value="清华大学">清华大学</option>
+            <option value="北京大学">北京大学</option>
+            <option value="华南农业大学">华南农业大学</option>
+          </select>
+        </div>
+      </div>
+</form>
+
+
+
+
+
+<table class="layui-hide" id="demo"></table>
+<script src="../static/layui/layui.js" charset="utf-8"></script>
+<script src="../static/jQuery.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+<script>
+  layui.use('form', function(){
+    var form = layui.form;
+    form.on('select(school)', function(data){
+      var value=data.value;
+      console.log(value);
+      window.location.replace('http://127.0.0.1:8000/schoolfilter/?school='+value);
+  });      
+    //各种基于事件的操作，下面会有进一步介绍
+  });
+  </script>
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  //展示已知数据
+  table.render({
+    elem: '#demo'
+    ,cols: [[ //标题栏
+      {field: 'title', title: '标题', width: 300}
+      ,{field: 'reporter', title: '报告人', width: 120}
+      ,{field: 'notice_time', title: '通知时间', width: 120, sort: true}
+      ,{field: 'report_time', title: '报告时间', width: 120, sort: true}
+      ,{field: 'address', title: '报告地点', width: 250}
+      ,{field: 'link', title: '链接', width: 120}
+      ,{field: 'university', title: '大学', width: 120}
+    ]]
+   ,data:{{data|safe}}
+
+    ,skin: 'line' //表格风格
+    ,even: true
+    ,page: true //是否显示分页
+    //,limits: [5, 7, 10]
+    ,limit: 15 //每页默认显示的数量
+  });
+});
+</script>
+
+
+</body>
+</html>
