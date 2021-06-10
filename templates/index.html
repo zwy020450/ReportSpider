@@ -13,33 +13,45 @@
     body{padding: 20px;}
     .demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
 
+
     </style>
     <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
     <style type="text/css">
         a{color:red}
+
 
     </style>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
 
-  <form class="layui-form"> 
+<form class="layui-form">
 
     <div class="layui-form-item" style="width: 500px;">
-      <label class="layui-form-label" for="xuexiao">学校</label>
+        <label class="layui-form-label" for="xuexiao">学校</label>
         <div class="layui-input-block">
-          <select name="xuexiao" lay-filter="school" id="xuexiao">
-            <option value=""></option>
-            <option value="清华大学">清华大学</option>
-            <option value="北京大学">北京大学</option>
-            <option value="华南农业大学">华南农业大学</option>
-          </select>
+            <select name="xuexiao" lay-filter="school" id="xuexiao">
+                <option value=""></option>
+                <option value="清华大学">清华大学</option>
+                <option value="北京大学">北京大学</option>
+                <option value="华南农业大学">华南农业大学</option>
+            </select>
         </div>
-      </div>
+    </div>
+
+    <div class="layui-form-item" style="width: 500px;">
+        <label class="layui-form-label" for="timefilter">排序方式</label>
+        <div class="layui-input-block">
+            <select name="timefilter" lay-filter="timefilter" id="timefilter">
+                <option value=""></option>
+                <option value="r1">报告时间升序</option>
+                <option value="r0">报告时间降序</option>
+                <option value="n1">通知时间升序</option>
+                <option value="n0">通知时间降序</option>
+            </select>
+        </div>
+    </div>
 </form>
-
-
-
 
 
 <table class="layui-hide" id="demo"></table>
@@ -53,10 +65,16 @@
       var value=data.value;
       console.log(value);
       window.location.replace('http://127.0.0.1:8000/schoolfilter/?school='+value);
-  });      
-    //各种基于事件的操作，下面会有进一步介绍
   });
-  </script>
+    //各种基于事件的操作，下面会有进一步介绍
+    form.on('select(timefilter)', function(data){
+      var value=data.value;
+      console.log(value);
+      window.location.replace('http://127.0.0.1:8000/timefilter/?timefilter='+value);
+  });
+  });
+
+</script>
 <script>
 layui.use('table', function(){
   var table = layui.table;
@@ -73,7 +91,6 @@ layui.use('table', function(){
       ,{field: 'university', title: '大学', width: 120}
     ]]
    ,data:{{data|safe}}
-
     ,skin: 'line' //表格风格
     ,even: true
     ,page: true //是否显示分页
@@ -81,6 +98,7 @@ layui.use('table', function(){
     ,limit: 15 //每页默认显示的数量
   });
 });
+
 </script>
 
 

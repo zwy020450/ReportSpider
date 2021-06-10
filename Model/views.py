@@ -49,3 +49,31 @@ def schoolfilter(request):
         data.append(row)
     data.sort(key=operator.itemgetter('report_time'), reverse=True)
     return render(request, 'index.html', locals())
+
+def timefilter(request):
+    timefilter=request.GET.get('timefilter')
+    print(timefilter)
+    data_list = Report.objects.all()
+    data = []
+    for var in data_list:
+        row = {'title': var.title,
+               'reporter': var.reporter,
+               'notice_time': var.notice_time,
+               'report_time': var.report_time,
+               'address': var.address,
+               'link': '<a href="'+var.link+'" target="_blank">点击前往</a>',
+               'university': var.university
+               }
+        data.append(row)
+    if timefilter=='r1':
+        data.sort(key=operator.itemgetter('report_time'), reverse=False)
+    elif timefilter=='r0':
+        data.sort(key=operator.itemgetter('report_time'), reverse=True)
+    elif timefilter=='n1':
+        data.sort(key=operator.itemgetter('notice_time'), reverse=False)
+    else:
+        data.sort(key=operator.itemgetter('notice_time'), reverse=True)
+
+
+
+    return render(request, 'index.html', locals())

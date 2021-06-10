@@ -22,6 +22,7 @@ urlpatterns = [
     path('show/',views.show),
     path('get/',views.get),
     path('add/', views.add),
-    path('schoolfilter/',views.schoolfilter)
+    path('schoolfilter/',views.schoolfilter),
+    path('timefilter/', views.timefilter)
 
 ]
