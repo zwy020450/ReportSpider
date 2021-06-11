@@ -41,9 +41,9 @@
     </div>
 
     <div class="layui-form-item" style="width: 500px;">
-        <label class="layui-form-label" for="timefilter">排序方式</label>
+        <label class="layui-form-label" for="sort">排序方式</label>
         <div class="layui-input-block">
-            <select name="timefilter" lay-filter="timefilter" id="timefilter">
+            <select name="sort" lay-filter="sort" id="sort">
                 <option value=""></option>
                 <option value="r1">报告时间升序</option>
                 <option value="r0">报告时间降序</option>
@@ -70,10 +70,10 @@
       window.location.replace('/schoolfilter/?school='+value);
   });
     //各种基于事件的操作，下面会有进一步介绍
-    form.on('select(timefilter)', function(data){
+    form.on('select(sort)', function(data){
       var value=data.value;
       console.log(value);
-      window.location.replace('/timefilter/?timefilter='+value);
+      window.location.replace('/sort/?sort='+value);
   });
   });
 

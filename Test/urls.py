@@ -23,6 +23,6 @@ urlpatterns = [
     path('get/',views.get),
     path('add/', views.add),
     path('schoolfilter/',views.schoolfilter),
-    path('timefilter/', views.timefilter)
+    path('sort/', views.sort)
 
 ]
