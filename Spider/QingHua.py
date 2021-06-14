@@ -17,6 +17,12 @@ def test(url, code='utf-8'):
         fp.write(response.text)
     return response.text
 
+def Search(key,content):
+    for k in key:
+        if k in content:
+            print("YES")
+            return
+    print('NO')
 
 def QingHua():
     info_lists = []
@@ -54,6 +60,17 @@ def QingHua():
             info_dic['address'] = lists[3].text
             print('链接:', 'https://iiis.tsinghua.edu.cn/' + tree.xpath('//tbody/tr[' + str(n) + ']/td/a/@href')[0])
             info_dic['link'] = 'https://iiis.tsinghua.edu.cn/' + tree.xpath('//tbody/tr[' + str(n) + ']/td/a/@href')[0]
+
+            detail_text = test(info_dic['link'])
+            d_tree = etree.HTML(detail_text)
+            content_tag = d_tree.xpath('//div[@class="contentss"]//text()')
+            content = ''
+            for c in content_tag:
+                content=content+c.strip()
+            # print(content)
+            key=['cryptography','security','密码学','信息安全']
+            Search(key,content)
             print('\n\n')
+
             info_lists.append(info_dic)
     return info_lists

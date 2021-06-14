@@ -76,6 +76,12 @@ def findAddress(content):
             if j!='' and len(j)<20:
                 return j
 
+def Search(key,content):
+    for k in key:
+        if k in content:
+            print("YES")
+            return
+    print('NO')
 
 def HuaNanNongYe():
     info_list = []
@@ -121,6 +127,11 @@ def HuaNanNongYe():
             print(info_dic['report_time'])
 
             info_dic['address']=findAddress(content)
-            print(info_dic['address'],'\n')
+            print(info_dic['address'])
+
+            key=['cryptography','security','密码学','信息安全','密码']
+            Search(key,content)
             info_list.append(info_dic)
+
+
     return info_list
