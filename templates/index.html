@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
     <style type="text/css">
         a{color:red}
-
-
     </style>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
@@ -54,6 +52,17 @@
     </div>
 </form>
 
+<div class="layui-inline">
+     <label class="layui-form-label" for="timefilter">时间过滤</label>
+</div>
+<div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="timefilter"  name="timefilter"  placeholder="yyyy-MM" autocomplete="off">
+</div>
+<div class="layui-inline">
+       <button type="button" class="layui-btn" id="time_confirm">确定</button>
+</div>
+
+
 <div class="divcss">
     <table class="layui-hide" id="demo"></table>
 </div>
@@ -64,6 +73,7 @@
 <script>
   layui.use('form', function(){
     var form = layui.form;
+    var laydate=layui.laydate;
     form.on('select(school)', function(data){
       var value=data.value;
       console.log(value);
@@ -75,6 +85,12 @@
       console.log(value);
       window.location.replace('/sort/?sort='+value);
   });
+
+  $(document).on('click',"#time_confirm",function(){
+    time=document.getElementsByName("timefilter")[0].value;
+    console.log(time);
+    window.location.replace('/timefilter/?time='+time);
+ });
   });
 
 </script>
@@ -103,6 +119,22 @@ layui.use('table', function(){
 });
 
 </script>
+
+<script>
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //执行一个laydate实例
+laydate.render({
+  elem: '#timefilter'
+  ,type: 'month'
+  ,max: '2021-06'
+    ,theme: 'molv'
+    ,trigger: 'click'
+ ,showBottom: false
+});
+});
+</script>
+
 
 
 </body>

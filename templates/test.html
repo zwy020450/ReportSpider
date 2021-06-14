@@ -1,35 +1,22 @@
-<!DOCTYPE html>
 <html>
+ <head>
+ <link rel="stylesheet" href="../static/layui/css/layui.css" rel="external nofollow" media="all">
+ </head>
+ <body>
+ <a class="layui-btn" id="test" href="javascript:;" rel="external nofollow" rel="external nofollow" >测试</a><br/><br/>
+ <a class="layui-btn" onclick="hello('this is a test')" href="javascript:;" rel="external nofollow" rel="external nofollow" >hello</a>
+ <script src="../static/layui/layui.js"></script>
+ <script type="text/javascript">
 
-<body>
-    <form action="/oneapp/add/" method="get">
-        a: <input type="text" id="a" name="a"> <br>
-        b: <input type="text" id="b" name="b"> <br>
-        <p>result: <span id='result'></span></p>
-        <button type="button" id='sum'>提交</button>
-    </form>
-
-    <script src="../static/jQuery.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#sum").click(function () {
-                var a = $("#a").val();
-                var b = $("#b").val();
-
-                $.get("/add", {
-                    'a': a,
-                    'b': b
-                }, function (ret) {
-                    $('#result').html(ret)
-                })
-            });
-        });
-    </script> 
-
-</body>
-
-</html>
-
-</script>
-</body>
+ layui.use(["jquery","layer","form"],function(){
+ var $ = layui.$,layer = layui.layer,form = layui.form;
+ $("#test").click(function(){
+  hello("张三");
+ });
+ window.hello = function(obj) {
+  layer.msg("hello world,"+obj);
+ }
+ });
+ </script>
+ </body>
 </html>

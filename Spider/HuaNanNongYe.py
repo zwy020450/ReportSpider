@@ -15,8 +15,8 @@ def test(url, code='utf-8'):
     response = requests.get(url, headers=head)
     response.encoding = code
     # print(response.text)
-    with open('./test.html', 'w', encoding='utf-8') as fp:
-        fp.write(response.text)
+    # with open('./test.html', 'w', encoding='utf-8') as fp:
+    #     fp.write(response.text)
     return response.text
 
 def findReporter(content):
