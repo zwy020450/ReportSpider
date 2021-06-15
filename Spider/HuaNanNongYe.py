@@ -15,8 +15,8 @@ def test(url, code='utf-8'):
     response = requests.get(url, headers=head)
     response.encoding = code
     # print(response.text)
-    # with open('./test.html', 'w', encoding='utf-8') as fp:
-    #     fp.write(response.text)
+    with open('./test.html', 'w', encoding='utf-8') as fp:
+        fp.write(response.text)
     return response.text
 
 def findReporter(content):
@@ -80,9 +80,9 @@ def Search(key,content):
     for k in key:
         if k in content:
             print("YES")
-            return
+            return True
     print('NO')
-
+    return False
 def HuaNanNongYe():
     info_list = []
     for j in range(1, 3):
@@ -129,9 +129,9 @@ def HuaNanNongYe():
             info_dic['address']=findAddress(content)
             print(info_dic['address'])
 
-            key=['cryptography','security','密码学','信息安全','密码']
-            Search(key,content)
-            info_list.append(info_dic)
+            key=['cryptography','information security','密码学','信息安全','密码','cryptology']
+            if Search(key,content):
+                info_list.append(info_dic)
 
 
     return info_list

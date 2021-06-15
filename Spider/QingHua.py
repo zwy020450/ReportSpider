@@ -13,20 +13,21 @@ def test(url, code='utf-8'):
     response = requests.get(url, headers=head)
     response.encoding = code
     # print(response.text)
-    # with open('./test.html', 'w', encoding='utf-8') as fp:
-    #     fp.write(response.text)
+    with open('./test.html', 'w', encoding='utf-8') as fp:
+        fp.write(response.text)
     return response.text
 
 def Search(key,content):
     for k in key:
         if k in content:
             print("YES")
-            return
+            return True
     print('NO')
+    return  False
 
 def QingHua():
     info_lists = []
-    for j in range(1, 34):
+    for j in range(1, 2):
         print('正在爬取第%d页' % j)
         url = 'https://iiis.tsinghua.edu.cn/list-265-' + str(j) + '.html'
         page_text = test(url)
@@ -68,9 +69,8 @@ def QingHua():
             for c in content_tag:
                 content=content+c.strip()
             # print(content)
-            key=['cryptography','security','密码学','信息安全']
-            Search(key,content)
+            key=['cryptography','information security','密码学','信息安全','密码','cryptology']
+            if Search(key,content):
+                info_lists.append(info_dic)
             print('\n\n')
-
-            info_lists.append(info_dic)
     return info_lists
