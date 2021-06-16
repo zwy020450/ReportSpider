@@ -105,7 +105,7 @@ height:20px;
 
     <div class="layui-inline">
         <label class="layui-form-label" for="timefilter">时间过滤</label>
-        <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+        <div class="layui-input-inline">
             <input type="text" class="layui-input" id="timefilter" name="timefilter" placeholder="yyyy-MM"
                    autocomplete="off">
         </div>
@@ -145,7 +145,7 @@ height:20px;
       console.log(value);
       window.location.replace('/schoolfilter/?school='+value);
   });
-    //各种基于事件的操作，下面会有进一步介绍
+
     form.on('select(sort)', function(data){
       var value=data.value;
       console.log(value);
