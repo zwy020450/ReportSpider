@@ -143,19 +143,20 @@ height:20px;
     form.on('select(school)', function(data){
       var value=data.value;
       console.log(value);
-      window.location.replace('/schoolfilter/?school='+value);
+      window.location.replace('/Codeschoolfilter/?school='+value);
   });
     //各种基于事件的操作，下面会有进一步介绍
     form.on('select(sort)', function(data){
       var value=data.value;
       console.log(value);
-      window.location.replace('/sort/?sort='+value);
+      window.location.replace('/Codesort/?sort='+value);
   });
 
     form.on('select(switch)', function(data){
       var value=data.value;
       console.log(value);
-      if(value=="all")
+      $.get("/switch/",{'switch':value}, function(ret){})
+              if(value=="all")
     {
         window.location.href="../show";
     }
@@ -165,11 +166,12 @@ height:20px;
     }
     else{console.log("no");}
 
+
   });
   $(document).on('click',"#time_confirm",function(){
     time=document.getElementsByName("timefilter")[0].value;
     console.log(time);
-    window.location.replace('/timefilter/?time='+time);
+    window.location.replace('/Codetimefilter/?time='+time);
  });
   });
 

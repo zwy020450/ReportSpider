@@ -20,10 +20,12 @@ from  Model import  views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('show/',views.show),
-    path('get/',views.get),
-    path('add/', views.add),
     path('schoolfilter/',views.schoolfilter),
     path('sort/', views.sort),
-    path('timefilter/',views.timefilter)
+    path('timefilter/',views.timefilter),
+    path('Codeshow/', views.Codeshow),
+    path('Codeschoolfilter/', views.Codeschoolfilter),
+    path('Codesort/', views.Codesort),
+    path('Codetimefilter/', views.Codetimefilter)
 
 ]
