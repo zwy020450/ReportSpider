@@ -3,7 +3,7 @@ import re
 import requests
 from lxml import etree
 
-
+# 参数为网址，返回html文本
 def test(url, code='utf-8'):
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
@@ -15,10 +15,11 @@ def test(url, code='utf-8'):
     response = requests.get(url, headers=head)
     response.encoding = code
     # print(response.text)
-    with open('./test.html', 'w', encoding='utf-8') as fp:
-        fp.write(response.text)
+    # with open('./test.html', 'w', encoding='utf-8') as fp:
+    #     fp.write(response.text)
     return response.text
 
+# 参数为某个讲座所有内容，提取其中的报告时间返回
 def findTime(content, year=''):
     time = []
     time.append(re.findall('(....年.?.?月.?.?日)', content))
@@ -44,7 +45,7 @@ def findTime(content, year=''):
                     j='2014-10-13'
                 return j
 
-
+# 参数为某个讲座所有内容，提取其中的报告人返回
 def findReporter(content):
     # print(content)
     reporter = []
@@ -78,6 +79,7 @@ def findReporter(content):
                 # print(j)
                 return j
 
+# 检查讲座网页中有没有图片
 def check_img(url, title):
     page_text = test(url)
     select1 = re.findall('vsbcontent_img', page_text)
@@ -104,7 +106,7 @@ def check_img(url, title):
         # return False
         return ""
 
-
+# 从讲座网页提取所有内容文本
 def find_content(url):
     page_text = test(url)
     tree = etree.HTML(page_text)
@@ -113,6 +115,7 @@ def find_content(url):
         return content
     return ''
 
+# 检测内容文本中有没有关键词（信息安全。。。） 返回bool
 def Search(key,content):
     for k in key:
         if k in content:
@@ -120,6 +123,8 @@ def Search(key,content):
             return True
     print('NO')
     return False
+
+# 在主程序调用，返回所有讲座信息的字典列表
 def BeiDa():
     url = 'http://eecs.pku.edu.cn/xygk1/jzxx1.htm'
     num = 0

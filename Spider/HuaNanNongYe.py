@@ -3,7 +3,7 @@ import re
 import requests
 from lxml import etree
 
-
+# 参数为网址，返回html文本
 def test(url, code='utf-8'):
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
@@ -19,6 +19,7 @@ def test(url, code='utf-8'):
         fp.write(response.text)
     return response.text
 
+# 参数为某个讲座所有内容，提取其中的报告人返回
 def findReporter(content):
     reporter = []
     reporter.append(re.findall('报告人：(.*?教授)', content))
@@ -36,7 +37,7 @@ def findReporter(content):
             if len(j) < 20:
                 return j
 
-
+# 参数为某个讲座所有内容，提取其中的报告时间返回
 def findTime(content,year=''):
     time = []
     time.append(re.findall('(....年.?.?月.?.?日)', content))
@@ -56,7 +57,7 @@ def findTime(content,year=''):
                     j=year+'-'+j
                 return j
 
-
+# 参数为某个讲座所有内容，提取其中的报告地址返回
 def findAddress(content):
     address = []
     address.append(re.findall('地点：(.*?)报告厅联系人', content))
@@ -76,6 +77,7 @@ def findAddress(content):
             if j!='' and len(j)<20:
                 return j
 
+# 检测内容文本中有没有关键词（信息安全。。。） 返回bool
 def Search(key,content):
     for k in key:
         if k in content:
@@ -83,6 +85,8 @@ def Search(key,content):
             return True
     print('NO')
     return False
+
+# 在主程序调用，返回所有讲座信息的字典列表
 def HuaNanNongYe():
     info_list = []
     for j in range(1, 3):
@@ -132,6 +136,4 @@ def HuaNanNongYe():
             key=['cryptography','information security','密码学','信息安全','密码','cryptology']
             if Search(key,content):
                 info_list.append(info_dic)
-
-
     return info_list

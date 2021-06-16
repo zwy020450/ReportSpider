@@ -1,5 +1,4 @@
 import operator
-
 from django.http import HttpResponse
 from django.shortcuts import render
 from Model.models import Report
@@ -25,7 +24,6 @@ def show(request):
 def get(request):
     return render(request, 'test.html')
 
-
 def add(request):
     a = request.GET.get('a', 0)
     b = request.GET.get('b', 0)
@@ -34,8 +32,11 @@ def add(request):
 
 def schoolfilter(request):
     school=request.GET.get('school')
-    print(school)
-    data_list = Report.objects.filter(university=school)
+    if len(school)>0:
+        print(school)
+        data_list = Report.objects.filter(university=school)
+    else:
+        data_list = Report.objects.all()
     data = []
     for var in data_list:
         row = {'title': var.title,
@@ -81,7 +82,7 @@ def timefilter(request):
     data_list = Report.objects.all()
     data = []
     for var in data_list:
-        if var.notice_time[:7]!=time:
+        if var.notice_time[:7]!=time :
             continue
         row = {'title': var.title,
                'reporter': var.reporter,

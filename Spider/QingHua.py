@@ -1,7 +1,7 @@
 from lxml import etree
 import requests
 
-
+# 参数为网址，返回html文本
 def test(url, code='utf-8'):
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
@@ -17,6 +17,7 @@ def test(url, code='utf-8'):
         fp.write(response.text)
     return response.text
 
+# 检测内容文本中有没有关键词（信息安全。。。） 返回bool
 def Search(key,content):
     for k in key:
         if k in content:
@@ -25,6 +26,7 @@ def Search(key,content):
     print('NO')
     return  False
 
+# 在主程序调用，返回所有讲座信息的字典列表
 def QingHua():
     info_lists = []
     for j in range(1, 2):

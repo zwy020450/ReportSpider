@@ -10,15 +10,29 @@
 
     </script>
     <style>
-    body{padding: 20px;}
+    body{padding: 20px; }
     .demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
 
-    .divcss{width:1200px;}
+    .divcss{width:1200px;
+                   margin:auto;}
 
+    .container {
+    width: 100%;
+    height: 200px;
+
+    z-index: -1;
+    bottom: 0;
+    left: 0;}
+
+    form{margin:auto;}
     </style>
+
     <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
     <style type="text/css">
         a{color:red}
+
+
+
     </style>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
@@ -26,49 +40,65 @@
 
 <form class="layui-form">
 
-    <div class="layui-form-item" style="width: 500px;">
-        <label class="layui-form-label" for="xuexiao">学校</label>
-        <div class="layui-input-block">
-            <select name="xuexiao" lay-filter="school" id="xuexiao">
-                <option value=""></option>
-                <option value="清华大学">清华大学</option>
-                <option value="北京大学">北京大学</option>
-                <option value="华南农业大学">华南农业大学</option>
-            </select>
+    <div class="layui-inline">
+        <div class="layui-form-item" style="width: 400px;">
+            <label class="layui-form-label" for="xuexiao">学校</label>
+            <div class="layui-input-block">
+                <select name="xuexiao" lay-filter="school" id="xuexiao">
+                    <option value=""></option>
+                    <option value="清华大学">清华大学</option>
+                    <option value="北京大学">北京大学</option>
+                    <option value="华南农业大学">华南农业大学</option>
+                </select>
+            </div>
         </div>
     </div>
 
-    <div class="layui-form-item" style="width: 500px;">
-        <label class="layui-form-label" for="sort">排序方式</label>
-        <div class="layui-input-block">
-            <select name="sort" lay-filter="sort" id="sort">
-                <option value=""></option>
-                <option value="r1">报告时间升序</option>
-                <option value="r0">报告时间降序</option>
-                <option value="n1">通知时间升序</option>
-                <option value="n0">通知时间降序</option>
-            </select>
+    <div class="layui-inline">
+        <div class="layui-form-item" style="width: 400px;">
+            <label class="layui-form-label" for="sort">排序方式</label>
+            <div class="layui-input-block">
+                <select name="sort" lay-filter="sort" id="sort">
+                    <option value=""></option>
+                    <option value="r1">报告时间升序</option>
+                    <option value="r0">报告时间降序</option>
+                    <option value="n1">通知时间升序</option>
+                    <option value="n0">通知时间降序</option>
+                </select>
+            </div>
         </div>
     </div>
-</form>
 
-<div class="layui-inline">
-     <label class="layui-form-label" for="timefilter">时间过滤</label>
+    <div class="layui-inline">
+    <div class="layui-inline">
+    <label class="layui-form-label" for="timefilter">时间过滤</label>
 </div>
 <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
-    <input type="text" class="layui-input" id="timefilter"  name="timefilter"  placeholder="yyyy-MM" autocomplete="off">
+    <input type="text" class="layui-input" id="timefilter" name="timefilter" placeholder="yyyy-MM" autocomplete="off">
 </div>
 <div class="layui-inline">
-       <button type="button" class="layui-btn" id="time_confirm">确定</button>
+    <button type="button" class="layui-btn" id="time_confirm">确定</button>
 </div>
-
+</div>
+</form>
 
 <div class="divcss">
     <table class="layui-hide" id="demo"></table>
 </div>
 
-<script src="../static/layui/layui.js" charset="utf-8"></script>
+<div id="jsi-flying-fish-container" class="container"></div>
+
+<style>
+  @media only screen and (max-width: 767px){
+  #sidebar_search_box input[type=text]{width:calc(100% - 24px)}
+  }
+
+</style>
+
 <script src="../static/jQuery.js" charset="utf-8"></script>
+<script src='../static/js/fish.js'></script>
+<script src="../static/layui/layui.js" charset="utf-8"></script>
+
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
   layui.use('form', function(){
@@ -92,6 +122,9 @@
     window.location.replace('/timefilter/?time='+time);
  });
   });
+
+
+
 
 </script>
 <script>
@@ -118,8 +151,10 @@ layui.use('table', function(){
   });
 });
 
-</script>
 
+
+
+</script>
 <script>
 layui.use('laydate', function(){
   var laydate = layui.laydate;
@@ -133,9 +168,11 @@ laydate.render({
  ,showBottom: false
 });
 });
+
+
+
 </script>
-
-
-
+<!--<script type="text/javascript"color="255,0,0"opacity="0.5"count="99" src="../static/js/lizi.js"></script>-->
+<!--粒子特效-->
 </body>
 </html>
