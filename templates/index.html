@@ -24,7 +24,19 @@
     bottom: 0;
     left: 0;}
 
-    form{margin:auto;}
+div.head{
+  background-color:#23262e;
+  height:60px;
+}
+div.block{
+height:20px;
+}
+
+ table.layui-hide
+        {
+            border: 1px solid #cad9ea;
+        }
+
     </style>
 
     <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
@@ -38,8 +50,11 @@
 </head>
 <body>
 
+<div class="head" charset="utf-8">
+   <img src="../static/title.png" height="55px">
+</div>
+<div class="block"></div>
 <form class="layui-form">
-
     <div class="layui-inline">
         <div class="layui-form-item" style="width: 400px;">
             <label class="layui-form-label" for="xuexiao">学校</label>
@@ -70,15 +85,13 @@
     </div>
 
     <div class="layui-inline">
-    <div class="layui-inline">
     <label class="layui-form-label" for="timefilter">时间过滤</label>
-</div>
-<div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
-    <input type="text" class="layui-input" id="timefilter" name="timefilter" placeholder="yyyy-MM" autocomplete="off">
-</div>
-<div class="layui-inline">
-    <button type="button" class="layui-btn" id="time_confirm">确定</button>
-</div>
+    <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+        <input type="text" class="layui-input" id="timefilter" name="timefilter" placeholder="yyyy-MM" autocomplete="off">
+    </div>
+    <div class="layui-inline">
+        <button type="button" class="layui-btn" id="time_confirm">确定</button>
+    </div>
 </div>
 </form>
 
